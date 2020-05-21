@@ -1,0 +1,1582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html{
+            scroll-behavior: smooth;
+        }
+        .menu-bar{
+            position: absolute;
+            top: 20px;
+            right: 80px;
+            font-size: 30px;
+            position: fixed;
+            z-index: 1000;
+            color: #17ffec;
+        }
+        .nav-branch{
+            position: fixed;
+            top: 0;
+            left: -300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 300px;
+            height: 100vh;
+            z-index: 1000000;
+            background-color: rgb(211, 214, 214);
+            transition: all .5s linear;
+        }
+        .logo{
+            padding: 0px 30px;
+        }
+        .logo h1{
+            margin-top: 10px;
+            font-size: 30px;
+        }
+        .nav-links{
+            flex-grow: 1;
+            list-style: none;
+        }
+        .nav-links a{
+            display: block;
+            padding: 30px 20px;
+            color: black;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: all .5s linear;
+        }
+        .nav-links a:hover{
+            background-color: rgb(0, 255, 191);
+            padding-left: 25px;
+        }
+        .social-icons{
+            margin: 0px 30px 40px 30px;
+        }
+        .social-icons .fab{
+            margin: 20px;
+            font-size: 20px;
+        }
+        .section{
+            left: 0px;
+        }
+        @media screen and (min-width: 768px) {
+            nav{
+                width: 100%;
+                height: 80px;
+                background-color: tomato;
+                position: fixed;
+                z-index: 100000;
+            }
+            .nav-branch{
+                left: 0px;
+                display: flex;
+                flex-direction: row;
+                background: none;
+                justify-content: space-around;
+                width: 100%;
+                height: 80px;
+            }
+            .menu-bar{
+                display: none;
+            }
+            .nav-links{
+                text-align: center;
+                line-height: 80px;
+            }
+            .nav-links li{
+                display: inline-block;
+            }
+            .nav-links a{
+                display: inline-block;
+                padding: 0;
+                margin-left: 30px;
+            }
+            .nav-links a:hover{
+                background: none;
+                padding: 0px;
+                color: rgb(202, 202, 207);
+            }
+            .nav-links .active{
+                color: rgb(202, 202, 207);
+            }
+            .logo{
+                padding: 0;
+                margin: 10px 90px;
+            }
+            .social-icons{
+                margin-right: 70px;
+                line-height: 80px;
+            }
+        }
+        @media screen and (max-width: 768px) {
+            .nav-links li{
+                margin: 0;
+                padding: 0;
+            }
+            .nav-links a{
+                display: inline-block;
+                padding: 0;
+                margin-left: 10px;
+            }
+            .logo{
+                padding: 0;
+                margin: 10px 10px 0 30px;
+            }
+            .social-icons{
+                margin: 0;
+                margin-right: 14px;
+            }
+            .social-icons .fab{
+                margin-right: 0px;
+                font-size: 20px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            .menu-bar{
+                position: absolute;
+                top: 50px;
+                right: 80px;
+                font-size: 30px;
+                position: fixed;
+                z-index: 1000;
+                color: #17ffec;
+            }
+            .nav-branch{
+                width: 250px;
+                height: 100%;
+            }
+            .menu-bar{
+                top: 20px;
+                right: 30px;
+            }
+            .nav-links{
+                display: block;
+            }
+            .nav-links a{
+                display: block;
+                padding: 30px 20px;
+                margin: 0;
+                color: black;
+                text-transform: uppercase;
+                text-decoration: none;
+                transition: all .5s linear;
+            }
+            .nav-links a:hover{
+                padding-left: 5px;
+            }
+            .social-icons{
+                text-align: center;
+            }
+        }
+        #home{
+            display: flex;
+            height: calc(100vh -80px);
+            width: 100%;
+        }
+        #home .home-content{
+            flex-basis: 40%;
+            margin: 250px 120px;
+        }
+        .home-content h1{
+            text-transform: capitalize;
+            margin-bottom: 20px;
+            font-size: 50px;
+        }
+        .home-content h1 span{
+            font-weight: bold;
+        }
+        #home .home-img{
+            flex-basis: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .home-content p{
+            width: 450px;
+        }
+        .btn{
+            padding: 10px 25px;
+            border: 2px solid #000;
+            letter-spacing: 3px;
+            background: #000;
+            color: #fff;
+            margin-top: 20px;
+            border-radius: 5px;
+            transition: all .5s linear;
+        }
+        .btn:hover{
+            color: #000;
+            background-color: transparent;
+        }
+        @media screen and (max-width: 768px) {
+            #home .home-content{
+                flex-basis: 30%;
+                margin: 150px 20px;
+            }
+            .home-content h1{
+                margin-bottom: 10px;
+                font-size: 25px;
+            }
+            #home .home-img{
+                flex-basis: 60%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .home-content p{
+                width: 350px;
+            }
+            .home-img img{
+                width: 350px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            #home{
+                height: 736px;
+                width: 100%;
+            }
+            #home{
+                flex-direction: column;
+            }
+            .home-img img{
+                width: 300px;
+                margin-top: -70px;
+            }
+            .home-content p{
+                width: 300px;
+            }
+            #home .home-content{
+                width: 400px;
+                margin: 0px 0px;
+                padding: 100px 0px 0px 40px;
+            }
+            .home-content h1{
+                margin-bottom: 5px;
+                font-size: 25px;
+            }
+        }
+        #about{
+            /* height: 100vh; */
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: -50px;
+        }
+        #about .box{
+            width: 350px;
+            height: 300px;
+            background-color: #fff;
+            margin-right: 30px;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px;
+            box-shadow: 0 0 10px #000;
+        }
+        .box i{
+            font-size: 40px;
+            margin-top: 20px;
+            text-align: center;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .box h2{
+            margin-bottom: 20px;
+        }
+        .box p{
+            text-align: center;
+        }
+        @media screen and (max-width: 768px) {
+            #about{
+                flex-direction: column;
+            }
+            #about .box{
+                width: 90%;
+                height: 300px;
+                margin: 0 auto 20px auto;
+                padding: 10px;
+            }
+
+        }
+        @media screen and (max-width: 478px) {
+            #about{
+                flex-direction: column;
+            }
+            #about .box{
+                width: 95%;
+                margin: 0 auto 20px auto;
+                
+            }
+        }   
+        #services{
+            background: #000;
+            color: #fff;
+            height: 80vh;
+            margin-top: -150px;
+        }
+        .container{
+            text-align: center;
+            padding-top: 250px;
+        }
+        .container h2{
+            font-size: 40px;
+        }
+        .container p{
+            width: 500px;
+            margin: 20px auto;
+            font-size: 15px;
+        }
+        .score{
+            display: flex;
+            width: 1200px;
+            margin: auto;
+            margin-top: 40px;
+        }
+        .score .score-content{
+            width: 400px;
+            text-align: center;
+        }
+        .score-content h3{
+            font-size: 50px;
+        }
+        .score-content p{
+            font-size: 20px;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+        @media screen and (max-width: 768px) {
+            #services{
+                height: 100vh;
+            }
+            .container{
+                padding-top: 180px;
+            }
+            .container h2{
+                font-size: 50px;
+            }
+            .container p{
+                width: 600px;
+                margin: 30px auto;
+                font-size: 25px;
+            }
+            .score{
+                flex-direction: column;
+                width: 500px;
+                margin: 0 auto;
+                margin-top: 30px;
+            }
+            .score .score-content{
+                width: 500px;
+                text-align: center;
+                margin: 0 auto 50px auto;
+            }
+            .score-content h3{
+                font-size: 50px;
+            }
+            .score-content p{
+                font-size: 23px;
+                margin-top: 10px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            #services{
+                color: #fff;
+                height: 90vh;
+                margin-top: -150px;
+            }
+            .container{
+                padding-top: 180px;
+            }
+            .container h2{
+                font-size: 30px;
+            }
+            .container p{
+                width: 350px;
+                margin: 20px auto;
+                font-size: 15px;
+            }
+            .score{
+                flex-direction: column;
+                width: 200px;
+                margin: 0 auto;
+                margin-top: 30px;
+            }
+            .score .score-content{
+                width: 200px;
+                text-align: center;
+                margin: 0 auto 20px auto;
+            }
+            .score-content h3{
+                font-size: 30px;
+            }
+            .score-content p{
+                font-size: 14px;
+                margin-top: 10px;
+            }
+        }
+        .blog{
+            display: flex;
+            height: 70vh;
+            margin-top: 40px;
+        }
+        .blog .blog-content{
+            flex-basis: 40%;
+            margin: 150px 120px;
+        }
+        .blog-content h1{
+            font-size: 40px;
+            margin-bottom: 10px;
+            position: relative;
+            cursor: pointer;
+        }
+        .blog-content h1::before{
+            content: '';
+            width: 0px;
+            border-bottom: 3px solid #000;
+            height: 3px;
+            position: absolute;
+            bottom: 0;
+            transition: all .5s linear;
+        }
+        .blog-content h1:hover::before{
+            width: 210px;
+        }
+        .blog .blog-img{
+            flex-basis: 60%;
+        }
+        @media screen and (max-width: 768px) {
+            .blog{
+                flex-direction: column;
+                height: 50vh;
+                margin-top: 10px;
+            }
+            .blog .blog-content{
+                flex-basis: 30%;
+                margin: 20px 0px 0 20px;
+            }
+            .blog-content h1{
+                font-size: 45px;
+                padding-bottom: 7px;
+            }
+            .blog-content p{
+                font-size: 20px;
+                width: 600px;
+                text-align: justify;
+            }
+            .blog-content h1::before{
+                border-bottom: 2px solid #000;
+            }
+            .blog-content h1:hover::before{
+                width: 250px;
+            }
+            .blog .blog-img{
+                flex-basis: 40%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+            }
+            .btn{
+                font-size: 24px;
+            }
+            .blog .blog-img img{
+                width: 340px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            .blog{
+                flex-direction: column;
+                height: 80vh;
+                margin-top: 10px;
+            }
+            .blog .blog-content{
+                margin: 20px 0px 0 20px;
+            }
+            .blog-content h1{
+                font-size: 35px;
+                padding-bottom: 7px;
+            }
+            .blog-content p{
+                font-size: 16px;
+                width: 360px;
+                text-align: justify;
+            }
+            .blog-content h1::before{
+                border-bottom: 2px solid #000;
+            }
+            .blog-content h1:hover::before{
+                width: 150px;
+            }
+            .blog .blog-img{
+                flex-basis: 50%;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+            }
+            .btn{
+                font-size: 18px;
+            }
+            .blog .blog-img img{
+                width: 340px;
+            }
+        }
+        #projects{
+            display: flex;
+            margin-top: 30px;
+            height: 60vh;
+        }
+        .projects-img{
+            flex-basis: 50%;
+            padding: 50px 150px;
+        }
+        .projects-box{
+            flex-basis: 50%;
+        }
+        .projects-content{
+            margin-bottom: 50px;
+        }
+        .projects-content h5{
+            font-size: 25px;
+            margin-bottom: 20px;
+        }
+        @media screen and (max-width: 768px) {
+            #projects{
+                flex-direction: column-reverse;
+                margin-top: 10px;
+                height: 80vh;
+            }
+            .projects-img{
+                flex-basis: 40%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+            }
+            .projects-img img{
+                width: 300px;
+            }
+            .projects-content{
+                margin-bottom: 30px;
+                padding-left: 20px;
+                width: 680px;
+            }
+            .projects-content h5{
+                font-size: 40px;
+                margin-bottom: 10px;
+            }
+            .projects-content p{
+                font-size: 25px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            #projects{
+                flex-direction: column-reverse;
+                margin-top: 120px;
+                height: 80vh;
+            }
+            .projects-img{
+                flex-basis: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+            }
+            .projects-img img{
+                width: 200px;
+                height: 200px;
+            }
+            .projects-content{
+                margin-bottom: 30px;
+                padding-left: 20px;
+                width: 360px;
+            }
+            .projects-content h5{
+                font-size: 25px;
+                margin-bottom: 10px;
+            }
+        }
+        .banner{
+            height: 40vh;
+            background-color: #000000;
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .banner .banner-box h1{
+            text-align: center;
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        .banner .banner-box{
+            text-align: center;
+        }
+        .banner-box .banner-btn{
+            background-color: #fff;
+            color: #000;
+            padding: 10px 30px;
+            transition: .5s linear;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        .banner-box .banner-btn:hover{
+            border: .5px solid #fff;
+            color: #fff;
+            background: transparent;
+        }
+        @media screen and (max-width: 768px) {
+            .banner .banner-box p{
+                font-size: 20px;
+            }
+            .btn{
+                font-size: 30px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            .banner{
+                height: 30vh;
+            }
+            .banner .banner-box h1{
+                text-align: center;
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+            .banner .banner-box p{
+                width: 370px;
+            }
+        }
+        #price{
+            background: rgb(124, 124, 124);
+            height: 120vh;
+            color: #fff;
+        }
+        #price .price-header{
+            text-align: center;
+            padding-top: 30px;
+        }
+        .price-header h1{
+            font-size: 40px;
+        }
+        .price-header .underlined{
+            width: 200px;
+            height: 4px;
+            background: #fff;
+            border-radius: 5px;
+            margin: 10px auto;
+        }
+        .price-header p{
+            width: 700px;
+            margin: 20px auto;
+        }
+        #price .price-box{
+            display: flex;
+            width: 1200px;
+            margin: auto;
+            margin-top: 80px;
+        }
+        #price .price-box .price-content{
+            width: 400px;
+            background: #fff;
+            color: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 30px;
+            box-shadow: 0 0 10px #333333;
+            text-align: center;
+            height: 500px;
+        }
+        .price-box .price-middle{
+            margin: 40px -20px 0px -20px;
+        }
+        .price-content h6{
+            opacity: .4;
+            font-size: 15px;
+            margin-bottom: 10px;
+        }
+        .price-content .price-p{
+            font-size: 25px;
+        }
+        .price-content span{
+            font-size: 15px;
+        }
+        .price-content h4{
+            font-size: 16px;
+            font-weight: 300;
+            margin: 20px 0;
+        }
+        .price-mark{
+            margin: 20px;
+        }
+        @media screen and (max-width: 768px) {
+            #price{
+                height: 210vh;
+            }
+            .price-header p{
+                font-size: 20px;
+                width: 80%;
+            }
+            #price .price-box{
+                flex-direction: column;
+                width: 90%;
+                margin: 40px auto;
+            }
+            #price .price-box .price-content{
+                width: 80%;
+                padding: 10px;
+                height: 600px;
+                margin: 0 auto 20px auto;
+            }
+            .price-box .price-middle{
+                margin: 0;
+            }
+            .price-content h6{
+                margin-bottom: 5px;
+                font-size: 20px;
+            }
+            .price-content .price-p{
+                font-size: 35px;
+                margin-bottom: 20px;
+            }
+            .price-content span{
+                font-size: 20px;
+            }
+            .price-content h4{
+                font-size: 25px;
+                font-weight: 300;
+                margin: 10px 0 20px 0;
+            }
+            .price-mark{
+                margin: 20px;
+                font-size: 20px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            #price{
+                height: 300vh;
+            }
+            #price .price-header{
+                padding-top: 10px;
+            }
+            .price-header h1{
+                font-size: 30px;
+            }
+            .price-header .underlined{
+                width: 150px;
+                height: 3px;
+            }
+            .price-header p{
+                width: 100;
+                margin: 20px auto;
+            }
+            #price .price-box{
+                flex-direction: column;
+                width: 100%;
+                margin: 40px auto;
+            }
+            #price .price-box .price-content{
+                width: 80%;
+                padding: 10px;
+                margin-bottom: 20px;
+            }
+            .price-box .price-middle{
+                margin: 0;
+            }
+            .price-content h6{
+                margin-bottom: 5px;
+            }
+            .price-content .price-p{
+                font-size: 25px;
+            }
+            .price-content span{
+                font-size: 17px;
+            }
+            .price-content h4{
+                font-size: 20px;
+                font-weight: 300;
+                margin: 10px 0 0 0;
+            }
+            .price-mark{
+                margin: 10px;
+            }
+            .price-content .btn{
+                font-size: 20px;
+            }
+        }
+        #finance{
+            display: flex;
+            padding: 30px;
+            height: 90vh;
+            background-color: rgb(255, 255, 255);
+        }
+        .finance-img{
+            flex-basis: 40%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .finance-box{
+            flex-basis: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        .finance-content{
+            width: 800px;
+        }
+        .finance-content h3{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid rgb(214, 214, 214);
+            padding: 20px 0;
+        }
+        .finance-btn1{
+            margin-right: 20px;
+            cursor: pointer;
+            transition: .5s linear;
+        }
+        .finance-btn2{
+            margin-right: 20px;
+            cursor: pointer;
+            transition: .5s linear;
+        }
+        .finance-btn3{
+            margin-right: 20px;
+            cursor: pointer;
+            transition: .5s linear;
+        }
+        .finance-btn4{
+            margin-right: 20px;
+            cursor: pointer;
+            transition: .5s linear;
+        }
+        .finanaceP1{
+            height: 0;
+            overflow: hidden;
+            transition: .5s linear;
+        }
+        .finanaceP2{
+            height: 0;
+            overflow: hidden;
+            transition: .5s linear;
+        }
+        .finanaceP3{
+            height: 0;
+            overflow: hidden;
+            transition: .5s linear;
+        }
+        .finanaceP4{
+            height: 0;
+            overflow: hidden;
+            transition: .5s linear;
+        }
+        .finaceSection{
+            height: 80px;
+        }
+        .btnRotate{
+            transform: rotate(90deg);
+            opacity: .5;
+        }
+        @media screen and (max-width: 768px) {
+            #finance{
+                padding: 10px;
+                height: 90vh;
+                flex-direction: column;
+            }
+            .finance-img{
+                flex-basis: 30%;
+                margin: 20px 0;
+            }
+            .finance-img img{
+                width: 350px;
+            }
+            .finance-content h3{
+                padding: 20px 0;
+                font-size: 30px;
+            }
+            .finance-box{
+                flex-basis: 30%;
+            }
+            .finance-content{
+                width: 90%;
+            }
+            .finance-content h3{
+                padding: 20px 0;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            #finance{
+                padding: 10px;
+                height: 115vh;
+                flex-direction: column;
+            }
+            .finance-img img{
+                width: 300px;
+            }
+            .finance-box{
+                flex-basis: 40%;
+            }
+            .finance-content{
+                width: 85%;
+            }
+            .finance-content h3{
+                padding: 20px 0;
+                font-size: 20px;
+            }
+        }
+        #contact{
+            height: 100vh;
+        }
+        #contact .form-header{
+            text-align: center;
+        }
+        .form-header h1{
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+        .form-header p{
+            font-size: 14px;
+            width: 650px;
+            margin: auto;
+        }
+        .form-box{
+            display: flex;
+            height: 100%;
+        }
+        .form-img{
+            flex-basis: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .form{
+            flex-basis: 50%;
+            margin-top: 50px;
+        }
+        .input-form{
+            margin-bottom: 20px;
+        }
+        .input-form h5{
+            font-weight: 300;
+            font-size: 20px;
+        }
+        .input-form input{
+            width: 70%;
+            padding: 20px;
+            margin-top: 10px;
+            outline: none;
+            font-size: 20px;
+            border-radius: 10px;
+            background: #fff;
+            border: 1px solid rgb(206, 199, 199);
+        }
+        .input-form textarea{
+            width: 70%;
+            border-radius: 10px;
+            outline: none;
+            padding: 20px;
+            font-size: 20px;
+        }
+        .input-form input:focus
+        ,.input-form textarea:focus{
+            box-shadow: 0 0 10px rgb(199, 191, 191);
+        }
+        @media screen and (max-width: 768px) {
+            #contact{
+                height: 105vh;
+            }
+            .form-header h1{
+                font-size: 40px;
+                margin-bottom: 10px;
+            }
+            .form-header p{
+                font-size: 20px;
+                width: 80%;
+                margin: 20px auto 0 auto;
+            }
+            .form{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+            }
+            .form-box{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+            }
+            .form-img{
+                flex-basis: 30%;
+                margin: 30px 0; 
+            }
+            .form-img img{
+                width: 500px;
+            }
+            .input-form{
+                margin-bottom: 13px;
+                width: 90%;
+            }
+            .input-form h5{
+                font-weight: 300;
+                font-size: 24px;
+            }
+            .input-form input{
+                width: 90%;
+                padding: 15px;
+                margin-top: 15px;
+                font-size: 20px;
+            }
+            .input-form textarea{
+                width: 90%;
+                border-radius: 10px;
+                outline: none;
+                padding: 15px;
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .form .btn{
+                margin-top: 5px;
+            }
+            .textAr{
+                width: 90%;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            #contact{
+                height: 140vh;
+            }
+            .form-header h1{
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+            .form-header p{
+                font-size: 18px;
+                width: 350px;
+                margin: auto;
+            }
+            .form{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-top: 20px;
+            }
+            .form-box{
+                display: flex;
+                height: 100%;
+                flex-direction: column;
+            }
+            .form-img{
+                flex-basis: 35%;
+                margin-top: 30px;
+            }
+            .form-img img{
+                width: 300px;
+            }
+            .input-form{
+                margin-bottom: 13px;
+                width: 90%;
+            }
+            .input-form h5{
+                font-weight: 300;
+                font-size: 15px;
+            }
+            .input-form input{
+                width: 90%;
+                padding: 10px;
+                margin-top: 15px;
+                font-size: 20px;
+            }
+            .input-form textarea{
+                width: 90%;
+                border-radius: 10px;
+                outline: none;
+                padding: 10px;
+                font-size: 15px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .form .btn{
+                margin-top: 5px;
+            }
+            .textAr{
+                width: 90%;
+            }
+        }   
+        .footer{
+            margin-top: 120px;
+            background: #000;
+            color: white;
+        }
+        .footer-section{
+            width: 80%;
+            margin: auto;
+        }
+        .footer-logo{
+            padding-top: 60px;
+            padding-bottom: 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgb(189, 189, 189);
+        }
+        .footer-logo ul li{
+            display: inline-block;
+            list-style: none;
+        }
+        .footer-logo ul li a{
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            margin-right: 50px;
+            transition: all .3s linear;
+        }
+        .footer-logo .active{
+            color: rgb(175, 173, 173);
+        }
+        .footer-logo ul li a:hover{
+            color: rgb(175, 173, 173);
+        }
+        .footer-section p{
+            padding: 40px 0;
+        }
+        .icons{
+            display: flex;
+            flex-direction: row;
+        }
+        .icons .fab{
+            width: 40px;
+            height: 40px;
+            background: #fff;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            margin-right: 30px;
+        }
+        .icons .fa-facebook-f{
+            background: #3b5998;
+        }
+        .icons .fa-twitter{
+            background: #1DA1F2;
+        }
+        .icons .fa-instagram{
+            background: rgb(64,93,230);
+        }
+        @media screen and (max-width: 768px) {
+            .footer-section{
+                width: 80%;
+                margin: auto;
+            }
+            .footer-logo{
+                flex-direction: column;
+                padding-top: 30px;
+            }
+            .footer-logo h1{
+                font-size: 40px;
+                margin-bottom: 20px;
+            }
+            .footer-logo ul{
+                margin-bottom: 30px;
+            }
+            .footer-logo ul li a{
+                margin-right: 10px;
+                font-size: 20px;
+            }
+            .footer-logo .active{
+                color: rgb(175, 173, 173);
+            }
+            .footer-logo ul li a:hover{
+                color: rgb(175, 173, 173);
+            }
+            .footer-section p{
+                padding: 40px 0;
+            }
+            .icons{
+                display: flex;
+                flex-direction: row;
+            }
+            .icons .fab{
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                margin-right: 30px;
+            }
+            .icons .fa-facebook-f{
+                background: #3b5998;
+            }
+            .icons .fa-twitter{
+                background: #1DA1F2;
+            }
+            .icons .fa-instagram{
+                background: rgb(64,93,230);
+            }
+            .footer-section p{
+                font-size: 20px;
+            }
+        }
+        @media screen and (max-width: 478px) {
+            .footer-section{
+                width: 80%;
+                margin: auto;
+            }
+            .footer-logo{
+                flex-direction: column;
+                padding-top: 30px;
+            }
+            .footer-logo h1{
+                font-size: 27px;
+                margin-bottom: 20px;
+            }
+            .footer-logo ul{
+                margin-bottom: 20px;
+            }
+            .footer-logo ul li a{
+                margin-right: 10px;
+                font-size: 17px;
+            }
+            .footer-logo .active{
+                color: rgb(175, 173, 173);
+            }
+            .footer-logo ul li a:hover{
+                color: rgb(175, 173, 173);
+            }
+            .footer-section p{
+                padding: 40px 0;
+            }
+            .icons{
+                display: flex;
+                flex-direction: row;
+            }
+            .icons .fab{
+                width: 40px;
+                height: 40px;
+                background: #fff;
+                border-radius: 50%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #fff;
+                margin-right: 30px;
+            }
+            .icons .fa-facebook-f{
+                background: #3b5998;
+            }
+            .icons .fa-twitter{
+                background: #1DA1F2;
+            }
+            .icons .fa-instagram{
+                background: rgb(64,93,230);
+            }
+        }
+        .scroll{
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 30px;
+            color: #17ffec;
+        }
+    </style>
+</head>
+<body>
+    
+    <nav>
+        <div class="nav-branch">
+            <div class="logo">
+                <h1>Zetter</h1>
+            </div>
+            <ul class="nav-links">
+                <li><a class="active" href="#home">home</a></li>
+                <li><a href="#about">about</a></li>
+                <li><a href="#services">services</a></li>
+                <li><a href="#blog">blog</a></li>
+                <li><a href="#projects">projects</a></li>
+                <li><a href="#contact">contact</a></li>
+            </ul>
+            <div class="social-icons">
+                <i class="fab fa-facebook-f"></i>
+                <i class="fab fa-instagram"></i>
+                <i class="fab fa-twitter"></i>
+            </div>
+        </div>
+        <div class="menu-bar"><i class="fas fa-bars"></i></div>
+    </nav>
+    <a href="#home" class="scroll"><i class="fas fa-arrow-alt-circle-up"></i></a>
+    <section id="home">
+        <div class="home-content">
+            <h1>Making your bussiness<br>ideas<span> come true</span></h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur dignissimos eius nam perferendis consequuntur!</p>
+            <button class="btn">Read More</button>
+        </div>
+        <div class="home-img"><img src="./images/pc2.svg" alt="" width="600px"></div>
+    </section>
+
+    <section id="about">
+        <div class="box">
+            <div class="box-img">
+                <i class="far fa-lightbulb"></i>
+                <h2>Branding</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aliquid asperiores perferendis molestiae accusamus, quas aperiam? Est repudiandae.</p>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <i class="fas fa-money-bill-alt"></i>
+                <h2>Branding</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aliquid asperiores perferendis molestiae accusamus, quas aperiam? Est repudiandae.</p>
+        </div>
+        <div class="box">
+            <div class="box-img">
+                <i class="fas fa-chart-area"></i>
+                <h2>Branding</h2>
+            </div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae aliquid asperiores perferendis molestiae accusamus, quas aperiam? Est repudiandae.</p>
+        </div>
+    </section>
+    <section id="services">
+        <div class="container">
+            <h2>Our Achievements</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, commodi reiciendis vel quia asperna.</p>
+        </div>
+        <div class="score">
+            <div class="score-content">
+                <h3>600</h3>
+                <p>awards won</p>
+            </div>
+            <div class="score-content">
+                <h3>600</h3>
+                <p>awards won</p>
+            </div>
+            <div class="score-content">
+                <h3>600</h3>
+                <p>awards won</p>
+            </div>
+            <div class="score-content">
+                <h3>600</h3>
+                <p>awards won</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog" id="blog">
+        <div class="blog-content">
+            <h1>Our Results</h1>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste odio voluptates iure quaerat suscipit corporis nisi impedit, dolorum vero, assumenda accusantium commodi? Exercitatione.</p>
+            <button class="btn">Read More</button>
+        </div>
+        <div class="blog-img">
+            <img src="./images/pc5.svg" alt="" width="600px">
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="projects-img">
+            <img src="images/pc4.svg" alt="" width="350px">
+        </div>
+        <div class="projects-box">
+            <div class="projects-content">
+                <h5>01.Sartups</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit repellat dolore non sequi magnam cupiditate.</p>
+            </div>
+            <div class="projects-content">
+                <h5>02.Anti-Crsis</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit repellat dolore non sequi magnam cupiditate.</p>
+            </div>
+            <div class="projects-content">
+                <h5>03.Finance</h5>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit repellat dolore non sequi magnam cupiditate..</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="banner">
+        <div class="banner-box">
+            <h1>Fusce venenaser</h1>
+            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Labore hic assumenda doloribus molestias.</p>
+            <button class="banner-btn">GET STARTED</button>
+        </div>
+    </section>
+
+    <section id="price" style="z-index: -4;">
+        <div class="price-header">
+            <h1>Our Pricing</h1>
+            <div class="underlined"></div>
+            <p>This service includes your business analysis, marketing researches and financial planning.</p>
+        </div>
+        <div class="price-box">
+            <div class="price-content" style="z-index: 1;">
+                <h6>1 USER</h6>
+                <p class="price-p">Premium<br><span>$100/month</span></p>
+                <h4>Phasellus tincidunt ulcorper fringillla.</h4>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <button class="btn">BUY NOW</button>
+            </div>
+            <div class="price-content price-middle" style="z-index: 2;">
+                <h6>1 USER</h6>
+                <p class="price-p">Premium<br><span>$100/month</span></p>
+                <h5>Phasellus tincidunt ulcorper fringillla.</h5>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <button class="btn">BUY NOW</button>
+            </div>
+            <div class="price-content" style="z-index: 1;">
+                <h6>1 USER</h6>
+                <p class="price-p">Premium<br><span>$100/month</span></p>
+                <h5>Phasellus tincidunt ulcorper fringillla.</h5>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <p class="price-mark"><i class="fas fa-rupee-sign"></i> scelerisque ultricies rutrum.</p>
+                <button class="btn">BUY NOW</button>
+            </div>
+        </div>
+    </section>
+
+    <section id="finance">
+        <div class="finance-img">
+            <img src="./images/pc1.svg" alt="" width="500px">
+        </div>
+        <div class="finance-box">
+            <div class="finance-content">
+                <h3>Explore Multipurpose the Me<i class="fas fa-chevron-right finance-btn1"></i></h3>
+                <p class="finanaceP1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima voluptatibus hic impedit illo corporis. Excepturi, aliquam. Optio minus, nobis esse voluptas vitae iste ut sint quae officia at vel ullam!</p>
+            </div>
+            <div class="finance-content">
+                <h3>Create Corpote Site<i class="fas fa-chevron-right finance-btn2"></i></h3>
+                <p class="finanaceP2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima voluptatibus hic impedit illo corporis. Excepturi, aliquam. Optio minus, nobis esse voluptas vitae iste ut sint quae officia at vel ullam!</p>
+            </div>
+            <div class="finance-content">
+                <h3>Start Publishing Blog<i class="fas fa-chevron-right finance-btn3"></i></h3>
+                <p class="finanaceP3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima voluptatibus hic impedit illo corporis. Excepturi, aliquam. Optio minus, nobis esse voluptas vitae iste ut sint quae officia at vel ullam!</p>
+            </div>
+            <div class="finance-content">
+                <h3 class="border">Operate Unique Shop<i class="fas fa-chevron-right finance-btn4"></i></h3>
+                <p class="finanaceP4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima voluptatibus hic impedit illo corporis. Excepturi, aliquam. Optio minus, nobis esse voluptas vitae iste ut sint quae officia at vel ullam!</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="form-header">
+            <h1>Get In Touch</h1>
+            <p>Finance and Jurisprudence are our main directions and we know how to deal with many financial issues and how to do business in today’s reality and conditions.</p>
+        </div>
+        <div class="form-box">
+            <div class="form-img">
+                <img src="./images/pc3.svg" alt="" width="600px">
+            </div>
+            <div class="form">
+                <div class="input-form">
+                    <h5>Your Name(required)</h5>
+                    <input type="text" required>
+                </div>
+                <div class="input-form">
+                    <h5>Your Email(required)</h5>
+                    <input type="text" required>
+                </div>
+                <div class="input-form">
+                    <h5>Subject</h5>
+                    <input type="text" required>
+                </div>
+                <div class="input-form textAr">
+                    <h5>Your Message</h5>
+                    <textarea name="message" id="" cols="81" rows="5"></textarea>
+                </div>
+                <button class="btn">Send</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="footer">
+        <div class="footer-section">
+            <div class="footer-logo">
+                <h1>Zetter</h1>
+                <ul>
+                    <li><a class="active" href="#">home</a></li>
+                    <li><a href="#">about</a></li>
+                    <li><a href="#">blog</a></li>
+                    <li><a href="#">contacts</a></li>
+                </ul>
+                <div class="icons">
+                    <i class="fab fa-facebook-f"></i>
+                    <i class="fab fa-instagram"></i>
+                    <i class="fab fa-twitter"></i>
+                </div>
+            </div>
+            <p>&copy;2019 Zetter All Rights Reserved | theme design by Zemez</p>
+        </div>
+    </section>
+
+
+
+
+    <script>
+        let menuBtn = document.querySelector('.menu-bar');
+        let navBranch = document.querySelector('.nav-branch')
+
+        menuBtn.addEventListener('click',function(){
+            navBranch.classList.toggle('section');
+        })
+
+        let financeBtn1 = document.querySelector('.finance-btn1');
+        let financeBtn2 = document.querySelector('.finance-btn2');
+        let financeBtn3 = document.querySelector('.finance-btn3');
+        let financeBtn4 = document.querySelector('.finance-btn4');
+        
+        let finanaceP1 = document.querySelector('.finanaceP1')
+        let finanaceP2 = document.querySelector('.finanaceP2')
+        let finanaceP3 = document.querySelector('.finanaceP3')
+        let finanaceP4 = document.querySelector('.finanaceP4')
+
+        financeBtn1.addEventListener('click',function(){
+            finanaceP1.classList.toggle('finaceSection')
+            financeBtn1.classList.toggle('btnRotate')
+        })
+        financeBtn2.addEventListener('click',function(){
+            finanaceP2.classList.toggle('finaceSection')
+            financeBtn2.classList.toggle('btnRotate')
+        })
+        financeBtn3.addEventListener('click',function(){
+            finanaceP3.classList.toggle('finaceSection')
+            financeBtn3.classList.toggle('btnRotate')
+        })
+        financeBtn4.addEventListener('click',function(){
+            finanaceP4.classList.toggle('finaceSection')
+            financeBtn4.classList.toggle('btnRotate')
+        })
+    </script>
+
+
+
+</body>
+</html>
